@@ -1,0 +1,314 @@
+#        .----.            .-.              .-.     　　　　 　 , ‐‐‐-‐､　,'⌒⌒ヽ
+#         /   `.--.      / -'             / -'   　.:::::::､‐､ .l::ゝー-´l ((V)）ｿヽ ）∩∩
+#        /        .'   -/--.-.  )  (    -/--     〈__ゝ:::::ヽ,ゝ:メ｀∞´）ﾍ-[ﾟ] ミ;し l l l l
+#       /        '.    / ./.-'_(    )   /        ﾉﾚd ﾟ ﾛﾟ/く＞-＜ﾌ　u　　　|）(□□ )+
+#      /      '----'`.'  (__.'  `--':`.'         ｜　Ｕ ) ∠ ＼Ｔ/)　 ／l＿／/u　とﾉ
+# .---------'                                    　ｕ-ｕ　∠ゝ・ω/ゞ（´<_｀◎/　u-ｕ
+
+
+################
+# Appearance : #
+################
+
+# Font for window titles.
+font pango: CaskaydiaCove Nerd Font 10
+
+# Set the mod key to alt:
+set $mod Mod1
+
+# Default i3 tiling mode:
+workspace_layout default
+
+# Border size
+new_window pixel 1
+
+# Thin borders
+hide_edge_borders both
+
+# Set gaps
+gaps inner 0
+gaps outer 0
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# Focus rules
+focus_follows_mouse no
+focus_on_window_activation none
+
+# Align bar titles to the center
+title_align center
+
+
+#####################
+#     Keybinds      #
+#####################
+
+
+# Switch to workspace
+bindsym $mod+1    workspace  $ws1
+bindsym $mod+2    workspace  $ws2
+bindsym $mod+3    workspace  $ws3
+bindsym $mod+4    workspace  $ws4
+bindsym $mod+5    workspace  $ws5
+bindsym $mod+6    workspace  $ws6
+bindsym $mod+7    workspace  $ws7
+bindsym $mod+8    workspace  $ws8
+bindsym $mod+9    workspace  $ws9
+bindsym $mod+0    workspace  $ws10
+
+# Move focused container to workspace
+bindsym $mod+Shift+1    move container to workspace  $ws1; workspace 1
+bindsym $mod+Shift+2    move container to workspace  $ws2; workspace 2
+bindsym $mod+Shift+3    move container to workspace  $ws3; workspace 3
+bindsym $mod+Shift+4    move container to workspace  $ws4; workspace 4
+bindsym $mod+Shift+5    move container to workspace  $ws5; workspace 5
+bindsym $mod+Shift+6    move container to workspace  $ws6; workspace 6
+bindsym $mod+Shift+7    move container to workspace  $ws7; workspace 7
+bindsym $mod+Shift+8    move container to workspace  $ws8; workspace 8
+bindsym $mod+Shift+9    move container to workspace  $ws9; workspace 9
+bindsym $mod+Shift+0    move container to workspace  $ws10; workspace 10
+
+# Switch/iterate between workspaces
+bindsym Mod4+Tab workspace next
+bindsym Mod4+Shift+Tab workspace prev
+bindsym $mod+Tab workspace back_and_forth
+
+# Switch workspace between monitors
+bindsym $mod+Ctrl+Tab move workspace to output next
+
+# Resize window
+bindsym control+$mod+l resize shrink width 5 px or 5 ppt
+bindsym control+$mod+k resize grow height 5 px or 5 ppt
+bindsym control+$mod+j resize shrink height 5 px or 5 ppt
+bindsym control+$mod+h resize grow width 5 px or 5 ppt
+
+# Start a terminal
+bindsym $mod+Return exec --no-startup-id kitty
+
+# Start the application launcher
+bindsym $mod+space exec --no-startup-id rofi -show drun
+
+# Emoji Picker
+bindsym mod4+semicolon exec emoji-picker &
+
+# Kill focused window
+bindsym $mod+Shift+q kill
+
+# Open a file explorer
+bindsym mod4+e exec --no-startup-id nautilus
+
+# Power Profiles menu switcher (rofi)
+bindsym $mod+Shift+p exec rofi -show power-menu -modi power-menu:rofi-power-menu
+bindsym $mod+Shift+e exec ~/.config/i3/scripts/power-profiles
+
+# Open the clipboard history
+bindsym mod4+v exec xfce4-popup-clipman
+
+# Reload the configuration file
+bindsym $mod+Shift+c reload
+
+# Restart i3 inplace (preserves your layout/session, can be used to update i3)
+bindsym $mod+Shift+r restart
+
+# Start a monitor switcher
+bindsym mod4+p exec --no-startup-id ~/.config/i3/scripts/monitor-switcher.sh
+
+# Brightness control
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +5%
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
+
+# Change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# Move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# Enter fullscreen mode for the focused container
+bindsym $mod+x fullscreen toggle
+
+# Change container layout (stacked, tabbed, toggle split)
+bindsym $mod+t layout tabbed
+bindsym $mod+e layout toggle split
+
+# Toggle tiling / floating
+bindsym $mod+v floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+c focus mode_toggle
+
+# Multimedia Keys
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +2% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -2% #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+
+# audio control
+bindsym XF86AudioPlay exec --no-startup-id playerctl play
+bindsym XF86AudioPause exec --no-startup-id playerctl pause
+bindsym XF86AudioNext exec --no-startup-id playerctl next
+bindsym XF86AudioPrev exec --no-startup-id playerctl previous
+
+# Mic mute
+#bindsym XF86AudioMicMute exec amixer sset Capture toggle
+
+# Redirect sound to headphones
+# bindsym mod4+m exec --no-startup-id ~/.config/i3/scripts/amixer_mute.sh
+
+# Take a screenshot
+bindsym mod4+Shift+s exec --no-startup-id flameshot gui 
+
+##########################################
+# Configuration for workspace behaviour: #
+##########################################
+
+# Define names for default workspaces.
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+##############
+# Compositor #
+##############
+
+# The default configuration is available in /etc/xdg/picom.conf
+exec_always --no-startup-id picom --config ~/.config/picom/picom.conf
+
+#############################################
+# autostart applications/services on login: #
+#############################################
+
+# Enable dex to autostart apps
+exec --no-startup-id dex --autostart --environment i3
+
+# Start polybar to display a workspace bar
+exec_always --no-startup-id ~/.config/polybar/launch.sh
+
+# Equalizer
+exec --no-startup-id easyeffects --gapplication-service
+
+# Clipboard manager 
+exec --no-startup-id xfce4-clipman
+
+# Set capslock to ctrl
+exec_always --no-startup-id setxkbmap -option ctrl:nocaps
+
+# Xressources
+exec --no-startup-id xrdb ~/.Xresources
+
+# Nvidia Settings
+# exec --no-startup-id nvidia-settings --load-config-only &
+
+# start a script to setup displays
+# uncomment the next line, use arandr to setup displays and save the file as monitor:
+exec_always --no-startup-id ~/.screenlayout/monitor.sh
+
+#get auth work with polkit-gnome
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+
+# dex execute .desktop files + apps using /etc/xdg/autostart.
+#exec --no-startup-id dex -a -s /etc/xdg/autostart/:~/.config/autostart/
+
+# Set wallpaper
+exec --no-startup-id sleep 2 && nitrogen --restore
+
+# set powersavings for display:
+#exec --no-startup-id xset s 480 dpms 600 600 600
+
+# disable power saving (for example if using xscreensaver)
+#exec --no-startup-id xset -dpms
+
+# xscreensaver
+# https://www.jwz.org/xscreensaver
+#exec --no-startup-id xscreensaver --no-splash
+
+# Desktop notifications
+exec --no-startup-id /usr/bin/dunst --config ~/.config/dunst/dunstrc
+
+# may need to run dbus-launch explicitly: 
+#exec --no-startup-id dbus-launch /usr/bin/dunst
+#exec --no-startup-id /usr/bin/dunst
+# alternative if you installed aside with XFCE4:
+# exec --no-startup-id /usr/lib/xfce4/notifyd/xfce4-notifyd &
+
+# autotiling script
+# https://github.com/nwg-piotr/autotiling
+# `yay -S autotiling ;) (it is in AUR)
+exec_always --no-startup-id autotiling
+
+exec --no-startup-id cbatticon --icon-type symbolic
+###############
+# system tray #
+###############
+
+# if you do not use dex: exec --no-startup-id dex --autostart --environment i3
+# you need to have tray apps started manually one by one:
+
+# start blueberry app for managing bluetooth devices from tray:
+#exec --no-startup-id blueberry-tray
+
+# networkmanager-applet
+exec --no-startup-id nm-applet
+
+##################
+# floating rules #
+##################
+
+# set floating (nontiling) for apps needing it
+for_window [class="Yad" instance="yad"] floating enable
+for_window [class="Galculator" instance="galculator"] floating enable
+
+# set floating (nontiling) for special apps
+for_window [class="Xsane" instance="xsane"] floating enable
+for_window [class="Pavucontrol" instance="pavucontrol"] floating enable
+for_window [class="qt5ct" instance="qt5ct"] floating enable
+for_window [class="Blueberry.py" instance="blueberry.py"] floating enable
+for_window [class="Pamac-manager"] floating enable
+for_window [class="Picture in Picture"] floating enable
+for_window [window_role="About"] floating enable
+for_window [class="RuneLite"] border none
+for_window [class="MusicBee"] border none  
+
+# set border of floating window
+for_window [class="urxvt"] border pixel 1
+
+# set size of floating window
+for_window [window_role="(?i)GtkFileChooserDialog"] resize set 640 480 #to set size of file choose dialog
+
+for_window [floating] move position center
+
+######################################
+# color settings for bar and windows #
+######################################
+
+# Define colors variables:
+set $darkbluetrans	#08052be6
+set $darkblue		#08052b
+set $lightblue		#5294e2
+set $urgentred		#e53935
+set $white		#ffffff
+set $black		#000000
+set $purple		#e345ff
+set $darkgrey		#383c4a
+set $grey		#b0b5bd
+set $mediumgrey		#8b8b8b
+set $yellowbrown	#e1b700
+
+# Define colors for windows:
+#class		        	border		bground		text		indicator	child_border
+client.focused		    	grey	 #474747	$white		$mediumgrey	$mediumgrey
+client.unfocused	    	#474747	 #6b6b6b	$white		$mediumgrey	$mediumgrey
+client.focused_inactive		grey	 #474747	$white		$mediumgrey	$mediumgrey
+client.urgent		    	$urgentred	$urgentred	$white		$yellowbrown	$yellowbrown
